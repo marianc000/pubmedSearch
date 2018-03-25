@@ -1,5 +1,7 @@
 package hello.pubmed2;
 
+import static hello.pubmed2.RequestParams.PUBMED_BASE_URL;
+import static hello.pubmed2.RequestParams.getPubmedSecondUrl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +16,8 @@ import java.util.List;
 
 public class Main {
 
-    static String pubmedUrl = "https://www.ncbi.nlm.nih.gov/pubmed/?term=(((exclusion)+OR+elimination)+AND+diet)+AND+ibs";
+    static String PUBMED_FIRST_URL = PUBMED_BASE_URL + "term=(((exclusion)+OR+elimination)+AND+diet)+AND+ibs";
+
     static String SET_COOKIE_HEADER = "Set-Cookie";
 
     String get(String urlStr) throws IOException {
@@ -38,19 +41,49 @@ public class Main {
         System.out.println(cookies);
         return null;
     }
+
+    String get2(String urlStr) throws IOException {
+        URL url = new URL(urlStr);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+            String l;
+
+            while ((l = in.readLine()) != null) {
+                sb.append(l);
+                System.out.println(l);
+            }
+        }
+
+        List<String> cookieStrs = con.getHeaderFields().get(SET_COOKIE_HEADER);
+        List<HttpCookie> cookies = new LinkedList<>();
+        for (String c : cookieStrs) {
+            System.out.println(c);
+            cookies.addAll(HttpCookie.parse(c));
+        }
+        System.out.println(cookies);
+        return sb.toString();
+    }
+
     private CookieManager cm;
 
-    void setCookieManager() {
+    private void setCookieManager() {
         cm = new CookieManager();
         cm.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
         CookieHandler.setDefault(cm);
     }
 
+    public Main() {
+        setCookieManager();
+    }
+
+    String getXmlResult() throws IOException {
+        get(PUBMED_FIRST_URL);
+        return get2(getPubmedSecondUrl());
+    }
+
     public static void main(String... args) throws IOException {
         Main i = new Main();
-        i.setCookieManager();
-        System.out.println(CookieHandler.getDefault());
-        i.get(pubmedUrl);
-        System.out.println(">>> " + i.cm.getCookieStore().getCookies());
+        i.getXmlResult();
     }
 }

@@ -10,10 +10,10 @@ public class RequestParams {
         "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.sSort=none",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.sPageSize=20",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.FFormat=docsum",
-        "email_format=docsum",
-        "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.email_count=20",
-        "email_start=1",
-        "email_subj=%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs+-+PubMed",
+        //        "email_format=docsum",
+        //        "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.email_count=20",
+        //        "email_start=1",
+        //        "email_subj=%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs+-+PubMed",
         "citman_count=20",
         "citman_start=1",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_ResultsPanel.Pubmed_DisplayBar.FileFormat=docsum",
@@ -41,9 +41,13 @@ public class RequestParams {
         "p%24l=EntrezSystem2",
         "p%24st=pubmed"};
 
-    public static String BASE_PUBMED_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
+    public static String PUBMED_BASE_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
+
+    public static String getPubmedSecondUrl() {
+        return PUBMED_BASE_URL + String.join("&", params);
+    }
 
     public static void main(String[] a) {
-        System.out.println(BASE_PUBMED_URL + String.join("&", params));
+        System.out.println(getPubmedSecondUrl());
     }
 }
