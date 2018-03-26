@@ -1,6 +1,8 @@
-package hello.pubmed2;
+package food.diary.pubmed.query.xml;
 
-import static hello.pubmed2.Utils.inputStreamToString;
+import food.diary.pubmed.entities.Article;
+import static food.diary.utils.FileUtils.inputStreamToString;
+ 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;

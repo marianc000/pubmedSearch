@@ -1,4 +1,4 @@
-package hello.pubmed2;
+package food.diary.pubmed.query;
 
 public class RequestParams {
 

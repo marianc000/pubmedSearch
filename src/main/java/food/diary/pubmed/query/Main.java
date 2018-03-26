@@ -1,7 +1,7 @@
-package hello.pubmed2;
+package food.diary.pubmed.query;
 
-import static hello.pubmed2.RequestParams.PUBMED_BASE_URL;
-import static hello.pubmed2.RequestParams.getPubmedSecondUrl;
+import static food.diary.pubmed.query.RequestParams.PUBMED_BASE_URL;
+import static food.diary.pubmed.query.RequestParams.getPubmedSecondUrl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
