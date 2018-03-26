@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class FileUtils {
 
-    public static String inputStreamToString(InputStream is) throws IOException {
+    public   String inputStreamToString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         char[] buffer = new char[1024 * 8];
         try (BufferedReader in = new BufferedReader(new InputStreamReader(is))) {

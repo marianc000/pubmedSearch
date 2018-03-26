@@ -1,7 +1,7 @@
 package food.diary.pubmed.query.xml;
 
 import food.diary.pubmed.entities.Article;
-import static food.diary.utils.FileUtils.inputStreamToString;
+import food.diary.utils.FileUtils; 
  
 import java.io.IOException;
 import java.util.LinkedList;
@@ -78,7 +78,7 @@ public class XmlResponseParser {
 
     public static void main(String[] ar) throws IOException {
         XmlResponseParser i = new XmlResponseParser();
-        String resp = inputStreamToString(i.getClass().getResourceAsStream("/output.xml"));
+        String resp = new FileUtils().inputStreamToString(i.getClass().getResourceAsStream("/output.xml"));
         i.getArticles(resp);
     }
 }

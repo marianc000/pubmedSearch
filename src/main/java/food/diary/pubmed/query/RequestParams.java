@@ -2,7 +2,7 @@ package food.diary.pubmed.query;
 
 public class RequestParams {
 
-    static String[] params = {"term=%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs+",
+    static String[] SECOND_REQUEST_PARAMETERS = {"term=%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs+",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_PageController.PreviousPageName=results",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_Facets.FacetsUrlFrag=filters%3D",
         "EntrezSystem2.PEntrez.PubMed.Pubmed_Facets.FacetSubmitted=false",
@@ -43,11 +43,15 @@ public class RequestParams {
 
     public static String PUBMED_BASE_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
 
-    public static String getPubmedSecondUrl() {
-        return PUBMED_BASE_URL + String.join("&", params);
+    public  String getPubmedSecondUrl() {
+        return PUBMED_BASE_URL + String.join("&", SECOND_REQUEST_PARAMETERS);
     }
 
-    public static void main(String[] a) {
-        System.out.println(getPubmedSecondUrl());
+    public  String getPubmedFirstUrl() { // TODO: make other queries so that they change once a day
+        return PUBMED_BASE_URL + "term=(((exclusion)+OR+elimination)+AND+diet)+AND+ibs";
     }
+
+//    public static void main(String[] a) {
+//        System.out.println(getPubmedSecondUrl());
+//    }
 }
