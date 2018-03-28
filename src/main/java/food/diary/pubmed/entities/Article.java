@@ -6,10 +6,10 @@ public class Article {
 
     String id;
     String title;
-    List<String> abstracts;
+    String abstracts;
     List<String> keywords;
 
-    public Article(String id, String title, List<String> abstracts, List<String> keywords) {
+    public Article(String id, String title, String abstracts, List<String> keywords) {
         this.id = id;
         this.title = title;
         this.abstracts = abstracts;
@@ -24,7 +24,7 @@ public class Article {
         return title;
     }
 
-    public List<String> getAbstracts() {
+    public String getAbstracts() {
         return abstracts;
     }
 
@@ -34,7 +34,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + "\ntitle=" + title + "\nabstracts=" + String.join("\n", abstracts) + "\nkeywords=" + keywords + "}\n";
+        return "Article{" + "id=" + id + "\ntitle=" + title + "\nabstracts=" + abstracts + "\nkeywords=" + keywords + "}\n";
     }
 
 }

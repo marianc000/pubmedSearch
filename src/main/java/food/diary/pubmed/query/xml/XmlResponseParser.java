@@ -36,13 +36,13 @@ public class XmlResponseParser {
         return null;
     }
 
-    List<String> getAbstract(String article) {
+  String  /* List<String>*/ getAbstract(String article) {
         Matcher m = ARTICLE_ABSTRACT_PATTERN.matcher(article);
         List<String> l = new LinkedList<>();
         while (m.find()) {
             l.add(m.group(1));
         }
-        return l;
+        return String.join("\n", l);
     }
 
     String getId(String article) {

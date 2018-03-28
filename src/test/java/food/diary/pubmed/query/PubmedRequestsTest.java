@@ -2,9 +2,13 @@
  */
 package food.diary.pubmed.query;
 
+import food.diary.pubmed.query.xml.XmlResponseParserTest;
 import food.diary.utils.HttpUtils;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,12 +26,30 @@ public class PubmedRequestsTest {
     }
 
     @Test
-    public void testMakeFirstRequest() throws IOException {
-
+    public void testMakeRequests() throws IOException {
+        HttpUtils.resetCookieStore();
         assertTrue(getCookieUrls().isEmpty());
-        System.out.println(">>>" + i.makeFirstRequest());
+        String xml0 = i.makeFirstRequest();
+        Files.write(Paths.get("src\\test\\resources\\xml0.xml"), xml0.getBytes(StandardCharsets.UTF_8));
+        System.out.println(">>>" + xml0.length());
         System.out.println(getCookieUrls());
         assertEquals(getCookieUrls().size(), 1);
         assertTrue(getCookieUrls().get(0).toString().equals("http://www.ncbi.nlm.nih.gov"));
+        //
+        String xml = i.makeSecondRequest();
+        System.out.println(">>>" + xml.length());
+        //    System.out.println(">>>" + xml);
+        Files.write(Paths.get("src\\test\\resources\\xml1.xml"), xml.getBytes(StandardCharsets.UTF_8));
+        assertTrue(xml.length() > 0);
+
+        XmlResponseParserTest test = new XmlResponseParserTest();
+        test.testGetArticleXmlParts(xml);
+        String xml2 = i.getXmlResult();
+//
+        System.out.println(">>>" + xml2.length());
+        //   System.out.println(">>>" + xml2);
+        Files.write(Paths.get("src\\test\\resources\\xml2.xml"), xml2.getBytes(StandardCharsets.UTF_8));
+        assertTrue(xml2.length() > 0);
+        test.testGetArticleXmlParts(xml2);
     }
 }

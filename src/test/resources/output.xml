@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<pre>
 &lt;PubmedArticle&gt;
     &lt;MedlineCitation Status="In-Data-Review" Owner="NLM"&gt;
         &lt;PMID Version="1"&gt;29413008&lt;/PMID&gt;
@@ -5685,3 +5688,5 @@ Circulating hormone concentrations are associated with breast cancer risk, with 
         &lt;/ArticleIdList&gt;
     &lt;/PubmedData&gt;
 &lt;/PubmedArticle&gt;
+
+</pre>

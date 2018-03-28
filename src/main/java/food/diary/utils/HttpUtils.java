@@ -37,12 +37,10 @@ public class HttpUtils {
 //        }
 //        System.out.println(cookies);
 //        return sb.toString();
-        try {
-            return fileUtils.inputStreamToString(con.getInputStream());
-        } finally {
-            System.out.println("execution time=" + (System.currentTimeMillis() - start)); // replace by interceptor
+        String content = fileUtils.inputStreamToString(con.getInputStream());
 
-        }
+        System.out.println("execution time=" + (System.currentTimeMillis() - start) + "; length=" + content.length()); // replace by interceptor
+        return content;
     }
 
     public String get(String urlStr) throws IOException {
@@ -61,11 +59,11 @@ public class HttpUtils {
         setCookieManager();
     }
 
-    public   static CookieStore getCookieStore() {
+    public static CookieStore getCookieStore() {
         return cm.getCookieStore();
     }
 
-    public   static void resetCookieStore() {
+    public static void resetCookieStore() {
         getCookieStore().removeAll();
     }
 
