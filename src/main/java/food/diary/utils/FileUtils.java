@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class FileUtils {
-
+public static int BUFFER_SIZE=1024 * 8;
     public String inputStreamToString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         char[] buffer = new char[1024 * 8];

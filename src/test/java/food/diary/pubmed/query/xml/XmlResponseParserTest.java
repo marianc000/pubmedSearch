@@ -2,6 +2,7 @@
  */
 package food.diary.pubmed.query.xml;
 
+import food.diary.pubmed.entities.Article;
 import food.diary.utils.FileUtils;
 import java.io.IOException;
 import java.util.List;
@@ -76,8 +77,9 @@ public class XmlResponseParserTest {
 
     @Test
     public void testGetArticleXmlParts() throws IOException {
-
         String resp = new FileUtils().inputStreamToString(getClass().getResourceAsStream("/output.xml"));
         testGetArticleXmlParts(resp);
+        List<Article> l = i.getArticles(resp);
+        assertEquals(l.size(), 20);
     }
 }
