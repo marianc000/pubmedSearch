@@ -65,13 +65,13 @@ public class XmlResponseParser {
         return l;
     }
 
-    List<Article> getArticles(String resp) {
+    public List<Article> getArticles(String resp) {
         List<String> articleXmls = getArticleXmlParts(resp);
         List<Article> articles = new LinkedList<>();
         for (String a : articleXmls) {
             Article article = new Article(getId(a), getTitle(a), getAbstract(a), getKeywords(a));
             articles.add(article);
-               System.out.println(">>>>>" + article);
+               System.out.println(">>>>>" + article.getTitle());
         }
         return articles;
     }

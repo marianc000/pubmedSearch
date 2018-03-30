@@ -37,19 +37,27 @@ public class RequestParams {
         "p%24l=EntrezSystem2",
         "p%24st=pubmed"};
 
-    public static String PUBMED_BASE_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
-    public static String PUBMED_QUERY = "term=(((exclusion)+OR+elimination)+AND+diet)+AND+ibs";
+    static String PUBMED_BASE_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
+    static String PUBMED_QUERY_PARAMETER = "term=";
+    //TODO:put to properties
+    static String[] PUBMED_QUERIES = {"(((exclusion)+OR+elimination)+AND+diet)+AND+ibs", "food+diary+diet+ibs", "%22food+diary%22+OR+%22food+journal%22"};
+    static String SECOND_REQUEST_PARAMETERS_QUERY_PLACEHOLDER = "%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs";
 
-    public String getPubmedSecondUrl() {
-        return PUBMED_BASE_URL + String.join("&", SECOND_REQUEST_PARAMETERS);
-
+    //  "food+diary+diet+ibs", "food diary" OR "food journal" 
+    public String getPubmedSecondUrl(int index) {
+        return PUBMED_BASE_URL + String.join("&", SECOND_REQUEST_PARAMETERS).replace(SECOND_REQUEST_PARAMETERS_QUERY_PLACEHOLDER, getPubmedQuery(index));
     }
 
-    public String getPubmedFirstUrl() { // TODO: make other queries so that they change once a day
-        return PUBMED_BASE_URL + PUBMED_QUERY;// (((exclusion)+OR+elimination)+AND+diet)+AND+ibs
+    public String getPubmedQuery(int index) {
+        return PUBMED_QUERIES[index];
     }
 
-    public static void main(String[] a) {
-        System.out.println(new RequestParams().getPubmedSecondUrl());
+    public  static int getPubmedQueriesCount() {
+        return PUBMED_QUERIES.length;
     }
+
+    public String getPubmedFirstUrl(int index) {
+        return PUBMED_BASE_URL + PUBMED_QUERY_PARAMETER + getPubmedQuery(index);
+    }
+ 
 }
