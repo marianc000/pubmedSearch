@@ -5,22 +5,38 @@ import food.diary.pubmed.query.PubmedRequests;
 import static food.diary.pubmed.query.RequestParams.getPubmedQueriesCount;
 import food.diary.pubmed.query.xml.XmlResponseParser;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
+@Singleton
+@Startup
 public class Loader {
 
     private static Set<Article> articles;
 
-    public static Set<Article> getArticles() throws IOException {
+    public  Set<Article> getArticles() {
+        System.out.println(">>>getArticles");
         if (articles == null) {
-            articles = refreshAllArticles();
+            try {
+                articles = refreshAllArticles();
+            } catch (IOException ex) {
+                System.out.println("failed to load articles from pubmed");
+                ex.printStackTrace();
+                if (articles == null) {
+                    System.out.println("previous articles were null");
+                    articles = new HashSet<>();
+                }
+            }
         }
         return articles;
     }
 
-    private static Set<Article> refreshAllArticles() throws IOException   {
+    private static Set<Article> refreshAllArticles() throws IOException {
         XmlResponseParser parser = new XmlResponseParser();
         PubmedRequests http = new PubmedRequests();
         Set<Article> set = new LinkedHashSet<>();
@@ -30,5 +46,10 @@ public class Loader {
             set.addAll(articles);
         }
         return set;
+    }
+
+    @PostConstruct
+    void postConstruct() {
+        getArticles();
     }
 }

@@ -1,0 +1,2 @@
+(therapy[Title/Abstract] OR intervention[Title/Abstract]) 
+AND (intolerance[Title/Abstract] OR sensitivity[Title/Abstract]) AND food[Title/Abstract] AND diet[Title/Abstract] AND (food diary[Title/Abstract] OR food journal[Title/Abstract]) AND (exclusion[Title/Abstract] OR elimination[Title/Abstract]) 

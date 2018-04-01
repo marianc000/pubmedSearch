@@ -46,14 +46,14 @@ public class PubmedRequestsTest {
         assertTrue(xml.length() > 0);
 
         XmlResponseParserTest test = new XmlResponseParserTest();
-        test.testGetArticleXmlParts(xml);
+      ///  test.testGetArticleXmlParts(xml);
         String xml2 = i.getXmlResult(0);
 //
         System.out.println(">>>" + xml2.length());
         //   System.out.println(">>>" + xml2);
         Files.write(Paths.get("src\\test\\resources\\xml2.xml"), xml2.getBytes(StandardCharsets.UTF_8));
         assertTrue(xml2.length() > 0);
-        test.testGetArticleXmlParts(xml2);
+     //   test.testGetArticleXmlParts(xml2);
     }
 
 

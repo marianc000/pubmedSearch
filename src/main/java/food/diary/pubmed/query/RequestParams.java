@@ -40,7 +40,9 @@ public class RequestParams {
     static String PUBMED_BASE_URL = "https://www.ncbi.nlm.nih.gov/pubmed?";
     static String PUBMED_QUERY_PARAMETER = "term=";
     //TODO:put to properties
-    static String[] PUBMED_QUERIES = {"(((exclusion)+OR+elimination)+AND+diet)+AND+ibs", "food+diary+diet+ibs", "%22food+diary%22+OR+%22food+journal%22"};
+    //   static String[] PUBMED_QUERIES = {"(((exclusion)+OR+elimination)+AND+diet)+AND+ibs", "food+diary+diet+ibs", "%22food+diary%22+OR+%22food+journal%22"};
+    static String[] PUBMED_QUERIES = {"diet AND ibs"};
+
     static String SECOND_REQUEST_PARAMETERS_QUERY_PLACEHOLDER = "%28%28%28exclusion%29+OR+elimination%29+AND+diet%29+AND+ibs";
 
     //  "food+diary+diet+ibs", "food diary" OR "food journal" 
@@ -49,15 +51,15 @@ public class RequestParams {
     }
 
     public String getPubmedQuery(int index) {
-        return PUBMED_QUERIES[index];
+        return PUBMED_QUERIES[index].replace(" ", "+");// get them from properties file
     }
 
-    public  static int getPubmedQueriesCount() {
+    public static int getPubmedQueriesCount() {
         return PUBMED_QUERIES.length;
     }
 
     public String getPubmedFirstUrl(int index) {
         return PUBMED_BASE_URL + PUBMED_QUERY_PARAMETER + getPubmedQuery(index);
     }
- 
+
 }

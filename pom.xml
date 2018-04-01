@@ -4,7 +4,7 @@
     <groupId>hello</groupId>
     <artifactId>pubmed2</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -23,6 +23,11 @@
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.1</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
         </dependency>
     </dependencies>
     <properties>
